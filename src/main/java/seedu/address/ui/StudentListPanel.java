@@ -13,9 +13,9 @@ import seedu.address.model.person.Student;
 /**
  * Panel containing the list of persons.
  */
-public class PersonListPanel extends UiPart<Region> {
+public class StudentListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(StudentListPanel.class);
 
     @FXML
     private ListView<Student> personListView;
@@ -23,16 +23,16 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Student> studentList) {
+    public StudentListPanel(ObservableList<Student> studentList) {
         super(FXML);
         personListView.setItems(studentList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.setCellFactory(listView -> new StudentListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
-    class PersonListViewCell extends ListCell<Student> {
+    class StudentListViewCell extends ListCell<Student> {
         @Override
         protected void updateItem(Student student, boolean empty) {
             super.updateItem(student, empty);
@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(student, getIndex() + 1).getRoot());
+                setGraphic(new StudentCard(student, getIndex() + 1).getRoot());
             }
         }
     }

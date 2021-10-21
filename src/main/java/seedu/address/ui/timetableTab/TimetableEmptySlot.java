@@ -1,4 +1,4 @@
-package seedu.address.ui.timetable;
+package seedu.address.ui.timetableTab;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
@@ -8,7 +8,7 @@ import java.time.temporal.ChronoUnit;
  */
 public class TimetableEmptySlot extends TimetableRegion {
 
-    private static final String FXML = "timetable/TimetableEmptySlot.fxml";
+    private static final String FXML = "timetableTab/TimetableEmptySlot.fxml";
 
     /**
      * Builds the empty slot with no tuition class.

@@ -1,4 +1,4 @@
-package seedu.address.ui.timetable;
+package seedu.address.ui.timetableTab;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;

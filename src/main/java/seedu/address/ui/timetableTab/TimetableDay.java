@@ -1,4 +1,4 @@
-package seedu.address.ui.timetable;
+package seedu.address.ui.timetableTab;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,7 +10,7 @@ public class TimetableDay extends TimetableRegion {
 
     private static final int WIDTH = 50;
 
-    private static final String FXML = "timetable/TimetableDay.fxml";
+    private static final String FXML = "timetableTab/TimetableDay.fxml";
 
     @FXML
     private Label day;

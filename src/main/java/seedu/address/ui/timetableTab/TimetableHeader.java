@@ -1,4 +1,4 @@
-package seedu.address.ui.timetable;
+package seedu.address.ui.timetableTab;
 
 import java.time.LocalTime;
 
@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
  */
 public class TimetableHeader extends TimetableRegion {
 
-    private static final String FXML = "timetable/TimetableHeader.fxml";
+    private static final String FXML = "timetableTab/TimetableHeader.fxml";
 
     private static final int TIMETABLE_HEADER_SLOT_LENGTH = 60;
 

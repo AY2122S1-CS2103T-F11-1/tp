@@ -1,4 +1,4 @@
-package seedu.address.ui.timetable;
+package seedu.address.ui.timetableTab;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -24,7 +24,7 @@ import seedu.address.ui.UiPart;
  * A UI for the Timetable Panel Tab.
  */
 public class TimetablePanel extends UiPart<Region> {
-    private static final String FXML = "timetable/TimetablePanel.fxml";
+    private static final String FXML = "timetableTab/TimetablePanel.fxml";
     private final Logger logger = LogsCenter.getLogger(TimetablePanel.class);
 
     @FXML

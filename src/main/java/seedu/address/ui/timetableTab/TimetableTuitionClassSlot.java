@@ -1,4 +1,4 @@
-package seedu.address.ui.timetable;
+package seedu.address.ui.timetableTab;
 
 import java.time.temporal.ChronoUnit;
 
@@ -11,7 +11,7 @@ import seedu.address.model.person.ClassTiming;
  */
 public class TimetableTuitionClassSlot extends TimetableRegion {
 
-    private static final String FXML = "timetable/TimetableTuitionClassSlot.fxml";
+    private static final String FXML = "timetableTab/TimetableTuitionClassSlot.fxml";
 
     @FXML
     private Label time;

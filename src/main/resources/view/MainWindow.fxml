@@ -25,7 +25,7 @@
         <URL value="@Fonts.css"/>
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
-        <URL value="@timetable/Timetable.css" />
+        <URL value="@timetableTab/Timetable.css" />
       </stylesheets>
 
       <VBox>

@@ -19,7 +19,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.timetable.TimetablePanel;
+import seedu.address.ui.timetableTab.TimetablePanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -35,7 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private TimetablePanel timetablePanel;
@@ -127,8 +127,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         timetablePanel = new TimetablePanel(logic.getFilteredPersonList());
         timetablePanelPlaceholder.getChildren().add(timetablePanel.getRoot());
@@ -193,8 +193,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public StudentListPanel getPersonListPanel() {
+        return studentListPanel;
     }
 
     /**
