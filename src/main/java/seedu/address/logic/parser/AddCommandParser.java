@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -35,9 +34,6 @@ import seedu.address.model.tuitionclass.TuitionClass;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
-    private static final String LOCATION_PLACEHOLDER = "Placeholder";
-    private static final String RATE_PLACEHOLDER = "0";
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -66,30 +62,30 @@ public class AddCommandParser implements Parser<AddCommand> {
     private TuitionClass parseClass(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
-                        .tokenize(args,
-                                PREFIX_CLASS_NAME, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_TAG);
+                        .tokenize(args, PREFIX_NAME, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CLASS_NAME, PREFIX_CLASSTIMING)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS_NAME).get());
+        Rate rate = ParserUtil.parseRate(argMultimap.getValue(PREFIX_RATE).get());
         ClassTiming classTiming = ParserUtil.parseClassTiming(argMultimap.getValue(PREFIX_CLASSTIMING).get());
         Rate rate = ParserUtil.parseRate(argMultimap.getValue(PREFIX_RATE).orElse(RATE_PLACEHOLDER));
         Location location =
                 ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(LOCATION_PLACEHOLDER));
 
-        return new TuitionClass(className, classTiming, rate, location);
+        return new TuitionClass(new ClassName("Placeholder"), classTiming, location, rate);
     }
 
     private Student parseStudent(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
                         .tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                                PREFIX_CLASSTIMING, PREFIX_TAG);
+                                PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                PREFIX_EMAIL)
+                PREFIX_RATE, PREFIX_CLASSTIMING, PREFIX_LOCATION, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -98,6 +94,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Rate rate = ParserUtil.parseRate(argMultimap.getValue(PREFIX_RATE).get());
+        ClassTiming classTiming = ParserUtil.parseClassTiming(argMultimap.getValue(PREFIX_CLASSTIMING).get());
+        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         return new Student(name, phone, email, address, null , tagList);

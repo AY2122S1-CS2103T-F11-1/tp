@@ -16,7 +16,6 @@ import seedu.address.logic.commands.FindNameCommand;
 import seedu.address.logic.commands.FindTagCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.NokCommand;
 import seedu.address.logic.commands.SelectClassCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.classcommands.AddClassCommand;
@@ -81,9 +80,6 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-
-        case NokCommand.COMMAND_WORD:
-            return new NokCommandParser().parse(arguments);
 
         //// tuition class commands
 

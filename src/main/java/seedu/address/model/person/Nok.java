@@ -1,7 +1,7 @@
 package seedu.address.model.person;
 
 /**
- * Represents a students Next of Kin (ie parent etc)
+ * Represents a students Next of Kin (ie parent etc.).
  */
 public class Nok extends Person {
 

@@ -48,22 +48,6 @@ public class TuitionClass {
     }
 
     /**
-     * Represents a way to create a TuitionClass with only it's classTiming.
-     * <p>
-     * A {@code Student} can have multiple {@code TuitionClass}es as well.
-     *
-     * @param classTiming The timing of the class specified. This is the unique identifier (id) of the class.
-     */
-    public TuitionClass(ClassName className, ClassTiming classTiming, Rate rate, Location location) {
-        requireAllNonNull(className, classTiming);
-        this.classTiming = classTiming;
-        this.className = className;
-        this.location = location;
-        this.rate = rate;
-        this.uniqueNameList = new UniqueNameList();
-    }
-
-    /**
      *  Represents a tuition class for Students to join. A {@code TuitionClass} can have multiple {@code Student}s.
      * A class is uniquely identified by its timing; a single timing can only have _one_ class. Without the
      * UniqueNameList.
@@ -172,9 +156,10 @@ public class TuitionClass {
 
         TuitionClass o = (TuitionClass) other;
         /* A class is uniquely identified by its timing; a single timing can only have _one_ class */
-        // TuitionClasses can now have null rates and location
-        return o.classTiming.equals(getClassTiming());
+        return /*o.className.equals(getClassName()) &&*/ o.classTiming.equals(getClassTiming())
+                && o.rate.equals(getRate()) && o.location.equals(getLocation());
     }
+
 
     /**
      * Returns true if the class timing of the class to be checked overlaps with this class.
