@@ -3,7 +3,6 @@ package seedu.address.model.tuitionclass;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalTime;
-import java.util.Optional;
 
 import seedu.address.model.person.Name;
 

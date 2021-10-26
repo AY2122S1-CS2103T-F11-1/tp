@@ -76,7 +76,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         ClassName className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS_NAME).get());
         ClassTiming classTiming = ParserUtil.parseClassTiming(argMultimap.getValue(PREFIX_CLASSTIMING).get());
         Rate rate = ParserUtil.parseRate(argMultimap.getValue(PREFIX_RATE).orElse(RATE_PLACEHOLDER));
-        Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(LOCATION_PLACEHOLDER));
+        Location location =
+                ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).orElse(LOCATION_PLACEHOLDER));
 
         return new TuitionClass(className, classTiming, rate, location);
     }
