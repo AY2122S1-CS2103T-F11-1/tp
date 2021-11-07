@@ -17,6 +17,7 @@ import seedu.times.logic.commands.AddCommand;
 import seedu.times.logic.commands.ClearCommand;
 import seedu.times.logic.commands.DeleteCommand;
 import seedu.times.logic.commands.EditCommand;
+import seedu.times.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.times.logic.commands.ExitCommand;
 import seedu.times.logic.commands.FindNameCommand;
 import seedu.times.logic.commands.HelpCommand;
@@ -55,7 +56,7 @@ public class TimesTableParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Student student = new PersonBuilder().build();
-        EditCommand.EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST, descriptor), command);

@@ -67,7 +67,7 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addStudent(studentToAdd);
+        model.addPerson(studentToAdd);
 
         updateView(TabName.STUDENTS);
 

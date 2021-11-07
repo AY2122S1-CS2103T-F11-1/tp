@@ -89,7 +89,7 @@ public class LogicManagerTest {
                 + ADDRESS_DESC_NOK;
         Student expectedStudent = new PersonBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addStudent(expectedStudent);
+        expectedModel.addPerson(expectedStudent);
         //expectedModel.addTuitionClass(expectedStudent.getClassList().get(0));
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

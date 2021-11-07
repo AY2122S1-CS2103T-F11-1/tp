@@ -30,7 +30,7 @@ public class AddCommandIntegrationTest {
         Student validStudent = new PersonBuilder().build();
 
         Model expectedModel = new ModelManager(model.getTimesTable(), new UserPrefs());
-        expectedModel.addStudent(validStudent);
+        expectedModel.addPerson(validStudent);
 
         assertCommandSuccess(new AddCommand(validStudent), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validStudent), expectedModel);

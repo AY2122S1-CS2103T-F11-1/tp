@@ -76,7 +76,7 @@ public interface Model {
      * Adds the given person.
      * {@code person} must not already exist in the TimesTable.
      */
-    void addStudent(Student student);
+    void addPerson(Student student);
 
     /**
      * Returns true if a class with the same identity as {@code TuitionClass} exists in the TimesTable.

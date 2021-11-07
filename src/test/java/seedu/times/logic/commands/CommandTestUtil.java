@@ -2,7 +2,7 @@ package seedu.times.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.times.logic.commands.EditCommand.EditStudentDescriptor;
+import static seedu.times.logic.commands.EditCommand.EditPersonDescriptor;
 import static seedu.times.logic.commands.classcommands.EditClassCommand.EditClassDescriptor;
 import static seedu.times.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.times.logic.parser.CliSyntax.PREFIX_CLASSTIMING;
@@ -108,8 +108,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditStudentDescriptor DESC_AMY;
-    public static final EditCommand.EditStudentDescriptor DESC_BOB;
+    public static final EditPersonDescriptor DESC_AMY;
+    public static final EditPersonDescriptor DESC_BOB;
     public static final EditClassDescriptor DESC_IB_PHYSICS;
     public static final EditClassDescriptor DESC_IB_MATHS;
 

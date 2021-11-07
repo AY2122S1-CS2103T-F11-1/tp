@@ -28,13 +28,8 @@ import static seedu.times.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.times.logic.commands.CommandTestUtil.VALID_PREFIX_NOK;
 import static seedu.times.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.times.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.times.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.times.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.times.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.times.model.tag.Tag.MAX_TAG_LENGTH;
-import static seedu.times.model.tag.Tag.MAX_TAG_NUMBER;
-import static seedu.times.model.tag.Tag.MESSAGE_CONSTRAINTS_TOO_LONG;
-import static seedu.times.model.tag.Tag.MESSAGE_CONSTRAINTS_TOO_MANY;
 import static seedu.times.testutil.TypicalTimestable.AMY;
 import static seedu.times.testutil.TypicalTimestable.BOB;
 
@@ -175,24 +170,5 @@ public class AddCommandParserTest {
                         + ADDRESS_DESC_BOB + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK
                         + ADDRESS_DESC_NOK + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-
-        // Too many tags
-        String userInput = NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB;
-        for (int i = 0; i < MAX_TAG_NUMBER + 1; i++) {
-            userInput += TAG_DESC_FRIEND + i;
-        }
-        userInput += VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK;
-        assertParseFailure(parser, userInput, MESSAGE_CONSTRAINTS_TOO_MANY);
-
-        // Tag too many characters
-        String invalidTag = " " + PREFIX_TAG;
-        for (int i = 0; i < MAX_TAG_LENGTH + 1; i++) {
-            invalidTag += "A";
-        }
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + invalidTag
-                + VALID_PREFIX_NOK + NAME_DESC_NOK + PHONE_DESC_NOK + EMAIL_DESC_NOK + ADDRESS_DESC_NOK,
-                MESSAGE_CONSTRAINTS_TOO_LONG);
-
     }
 }

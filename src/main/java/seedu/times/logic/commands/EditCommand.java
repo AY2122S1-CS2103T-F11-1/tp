@@ -53,18 +53,18 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book.";
 
     private final Index index;
-    private final EditStudentDescriptor editStudentDescriptor;
+    private final EditPersonDescriptor editPersonDescriptor;
 
     /**
      * @param index of the person in the filtered person list to edit
-     * @param editStudentDescriptor details to edit the person with
+     * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
-        requireNonNull(editStudentDescriptor);
+        requireNonNull(editPersonDescriptor);
 
         this.index = index;
-        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
+        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
@@ -80,11 +80,11 @@ public class EditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
 
         //execute update scade, change name in student name list in tuitionclass
-        editStudentDescriptor.getName().ifPresent(name -> {
+        editPersonDescriptor.getName().ifPresent(name -> {
             model.updateClassStudentLists(name, studentToEdit.getName());
         });
 
-        Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
+        Student editedStudent = createEditedPerson(studentToEdit, editPersonDescriptor);
 
 
         if (!studentToEdit.isSamePerson(editedStudent) && model.hasStudent(editedStudent)) {
@@ -102,21 +102,20 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor)
-            throws CommandException {
+    private static Student createEditedPerson(Student studentToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert studentToEdit != null;
 
-        Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
-        Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
-        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Address updatedAddress = editStudentDescriptor.getAddress().orElse(studentToEdit.getAddress());
-        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(studentToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(studentToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(studentToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(studentToEdit.getAddress());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(studentToEdit.getTags());
 
         // Nok
-        Name nokName = editStudentDescriptor.getNokName().orElse(studentToEdit.getNok().getName());
-        Phone nokPhone = editStudentDescriptor.getNokPhone().orElse(studentToEdit.getNok().getPhone());
-        Email nokEmail = editStudentDescriptor.getNokEmail().orElse(studentToEdit.getNok().getEmail());
-        Address nokAddress = editStudentDescriptor.getNokAddress().orElse(studentToEdit.getNok().getAddress());
+        Name nokName = editPersonDescriptor.getNokName().orElse(studentToEdit.getNok().getName());
+        Phone nokPhone = editPersonDescriptor.getNokPhone().orElse(studentToEdit.getNok().getPhone());
+        Email nokEmail = editPersonDescriptor.getNokEmail().orElse(studentToEdit.getNok().getEmail());
+        Address nokAddress = editPersonDescriptor.getNokAddress().orElse(studentToEdit.getNok().getAddress());
         Nok nok = new Nok(nokName, nokPhone, nokEmail, nokAddress);
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, nok, updatedTags);
@@ -137,14 +136,14 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editStudentDescriptor.equals(e.editStudentDescriptor);
+                && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
     /**
-     * Stores the details to edit the student with. Each non-empty field value will replace the
-     * corresponding field value of the student.
+     * Stores the details to edit the person with. Each non-empty field value will replace the
+     * corresponding field value of the person.
      */
-    public static class EditStudentDescriptor {
+    public static class EditPersonDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
@@ -156,13 +155,13 @@ public class EditCommand extends Command {
         private Email nokEmail;
         private Address nokAddress;
 
-        public EditStudentDescriptor() {}
+        public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
+        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -274,12 +273,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditStudentDescriptor)) {
+            if (!(other instanceof EditPersonDescriptor)) {
                 return false;
             }
 
             // state check
-            EditStudentDescriptor e = (EditStudentDescriptor) other;
+            EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

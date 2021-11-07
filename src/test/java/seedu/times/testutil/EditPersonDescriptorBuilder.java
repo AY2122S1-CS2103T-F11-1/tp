@@ -4,8 +4,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.times.logic.commands.EditCommand;
-import seedu.times.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.times.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.times.model.person.Address;
 import seedu.times.model.person.Email;
 import seedu.times.model.person.Name;
@@ -18,21 +17,21 @@ import seedu.times.model.tag.Tag;
  */
 public class EditPersonDescriptorBuilder {
 
-    private EditStudentDescriptor descriptor;
+    private EditPersonDescriptor descriptor;
 
     public EditPersonDescriptorBuilder() {
-        descriptor = new EditStudentDescriptor();
+        descriptor = new EditPersonDescriptor();
     }
 
-    public EditPersonDescriptorBuilder(EditCommand.EditStudentDescriptor descriptor) {
-        this.descriptor = new EditStudentDescriptor(descriptor);
+    public EditPersonDescriptorBuilder(EditPersonDescriptor descriptor) {
+        this.descriptor = new EditPersonDescriptor(descriptor);
     }
 
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
     public EditPersonDescriptorBuilder(Student student) {
-        descriptor = new EditCommand.EditStudentDescriptor();
+        descriptor = new EditPersonDescriptor();
 
         descriptor.setName(student.getName());
         descriptor.setPhone(student.getPhone());
@@ -120,7 +119,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
-    public EditStudentDescriptor build() {
+    public EditPersonDescriptor build() {
         return descriptor;
     }
 }

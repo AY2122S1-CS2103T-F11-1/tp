@@ -27,10 +27,6 @@ import static seedu.times.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.times.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.times.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.times.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.times.model.tag.Tag.MAX_TAG_LENGTH;
-import static seedu.times.model.tag.Tag.MAX_TAG_NUMBER;
-import static seedu.times.model.tag.Tag.MESSAGE_CONSTRAINTS_TOO_LONG;
-import static seedu.times.model.tag.Tag.MESSAGE_CONSTRAINTS_TOO_MANY;
 import static seedu.times.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.times.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.times.testutil.TypicalIndexes.INDEX_THIRD;
@@ -39,7 +35,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.times.commons.core.index.Index;
 import seedu.times.logic.commands.EditCommand;
-import seedu.times.logic.commands.EditCommand.EditStudentDescriptor;
+import seedu.times.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.times.model.person.Address;
 import seedu.times.model.person.Email;
 import seedu.times.model.person.Name;
@@ -108,20 +104,6 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + INVALID_CLASSTIMING_DESC
                          + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
                 Name.MESSAGE_CONSTRAINTS);
-
-        // Too many tags
-        String userInput = "1";
-        for (int i = 0; i < MAX_TAG_NUMBER + 1; i++) {
-            userInput += TAG_DESC_FRIEND + i;
-        }
-        assertParseFailure(parser, userInput, MESSAGE_CONSTRAINTS_TOO_MANY);
-
-        // Tag too many characters
-        String invalidTag = " " + PREFIX_TAG;
-        for (int i = 0; i < MAX_TAG_LENGTH + 1; i++) {
-            invalidTag += "A";
-        }
-        assertParseFailure(parser, "1" + invalidTag, MESSAGE_CONSTRAINTS_TOO_LONG);
     }
 
     @Test
@@ -131,7 +113,7 @@ public class EditCommandParserTest {
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY
                 + TAG_DESC_FRIEND;
 
-        EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -144,7 +126,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -156,8 +138,7 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditCommand.EditStudentDescriptor descriptor =
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -194,7 +175,7 @@ public class EditCommandParserTest {
                 + TAG_DESC_FRIEND + PHONE_DESC_BOB + ADDRESS_DESC_BOB
                 + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -207,7 +188,7 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -225,7 +206,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditStudentDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

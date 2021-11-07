@@ -1,10 +1,6 @@
 package seedu.times.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.times.model.tag.Tag.MAX_TAG_LENGTH;
-import static seedu.times.model.tag.Tag.MAX_TAG_NUMBER;
-import static seedu.times.model.tag.Tag.MESSAGE_CONSTRAINTS_TOO_LONG;
-import static seedu.times.model.tag.Tag.MESSAGE_CONSTRAINTS_TOO_MANY;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -189,29 +185,11 @@ public class ParserUtil {
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        checkTagsAreValid(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
-    }
-
-    /**
-     * Checks whether the tags are within the constraints.
-     *
-     * @param tags The tags to check.
-     * @throws ParseException if the given tags are invalid.
-     */
-    public static void checkTagsAreValid(Collection<String> tags) throws ParseException {
-        if (tags.size() > MAX_TAG_NUMBER) {
-            throw new ParseException(MESSAGE_CONSTRAINTS_TOO_MANY);
-        }
-        for (String tagName : tags) {
-            if (tagName.length() > MAX_TAG_LENGTH) {
-                throw new ParseException(MESSAGE_CONSTRAINTS_TOO_LONG);
-            }
-        }
     }
 
     /**

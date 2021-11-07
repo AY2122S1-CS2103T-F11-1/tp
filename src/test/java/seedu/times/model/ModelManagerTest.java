@@ -84,7 +84,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personInTimesTable_returnsTrue() {
-        modelManager.addStudent(ALICE);
+        modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasStudent(ALICE));
     }
 

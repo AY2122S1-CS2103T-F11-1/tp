@@ -114,7 +114,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addStudent(Student student) {
+        public void addPerson(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -241,7 +241,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addStudent(Student student) {
+        public void addPerson(Student student) {
             requireNonNull(student);
             personsAdded.add(student);
         }

@@ -543,41 +543,22 @@ TimesTable data are saved as a JSON file `[JAR file location]/data/timestable.js
 If your changes to the data file makes its format invalid, Timestable will discard all data and start with an empty data file at the next run.
 </div>
 
+[comment]: <> (### Showing the schedule for a specific day : `schedule`)
+
+[comment]: <> (Shows the contacts of students who have classes on a specific day.)
+
+[comment]: <> (Format: `schedule DAY`)
+
+[comment]: <> (Examples:)
+
+[comment]: <> (* `schedule Monday` will show all contacts with classes on monday.)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Timestable home folder.
-
-**Q**: Are you going to add XXX feature? What features are you planning to add?<br>
-**A**: I'm glad you asked! We're currently planning to add the following features:
-
-### Upcoming Features:
-
-#### Payment Management with Invoice
-
-Different classes you teach will have different hourly rates, and they will of course have varying lengths and frequencies. 
-Having to keep track of how much someone has to pay and whether they have paid is a major source of stress.
-
-We recognise this demand, and thus are working on this feature for you to easily track required payments to students.
-
-A work in progress sneak peak of the feature is shown below.  
-
-![UpcomingFeature](images/UpcomingFeature.png)  
-
-After a class, just input the time taught for that class and mark the attendance of those present.
-  
-For each student present, TimesTable will take the hourly rate multiplied by the 
-session length for each person present to calculate the amount that each student has to pay.  
-
-The session length is useful when the class length goes beyond the intended length or when the class cuts short.  
-
-This information will then be consodidated in an invoice to be generated.
-
-<bernard's section>
-
-If there are any other proposed features, please submit an issue via our GitHub over [here](https://github.com/AY2122S1-CS2103T-F11-1/tp/issues) and we'll look into it!
 
 --------------------------------------------------------------------------------------------------------------------
 
